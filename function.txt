@@ -1,0 +1,47 @@
+-- FUNCTION: public.crearcaja(text, text, character, text, text, integer)
+
+-- DROP FUNCTION public.crearcaja(text, text, character, text, text, integer);
+
+CREATE OR REPLACE FUNCTION public.crearcaja(
+	user1 text,
+	contra1 text,
+	ro character,
+	nom text,
+	ape text,
+	caja integer)
+    RETURNS void
+    LANGUAGE 'sql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
+
+insert into login (usuario, contrasena, rol) values (user1,contra1,ro);
+insert into caja (nombre, apellido,n_caja,id_login) values (nom,ape,caja,(SELECT id_login from login 
+				 where login.usuario=user1 and login.contrasena= contra1) );	 
+
+$BODY$;
+
+ALTER FUNCTION public.crearcaja(text, text, character, text, text, integer)
+    OWNER TO postgres;
+
+
+
+
+
+
+
+ 
+
+CREATE OR REPLACE FUNCTION  recordarclave(usua text, pass text, cajita integer)
+RETURNS text AS $contra$
+declare
+	contra text;
+BEGIN
+	select login.contrasena into contra
+	 from login inner join caja on login.id_login=caja.id_login
+	 where login.usuario=usua and caja.nombre=pass and caja.n_caja=cajita;
+	 
+   RETURN contra;
+END;
+$contra$ LANGUAGE plpgsql;

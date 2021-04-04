@@ -1,0 +1,26 @@
+CREATE TABLE login(
+   id_login serial primary key,
+	usuario text,
+	contrasena text,
+	rol bool)
+CREATE TABLE comprobante(
+   id_compro integer,
+	estado bool)
+create table caja(
+	id_caja serial primary key,
+	nombre text,
+	apellido text,
+	n_caja integer,
+	id_login integer,
+	 FOREIGN KEY (id_login)
+      REFERENCES login (id_login))	
+create table turno(
+	id_turno serial primary key,
+	fecha_h TIMESTAMP,
+	cedula text,
+	identificador CHAR (1),
+	num_turn integer,
+	observacion text,
+	id_caja integer,
+	FOREIGN KEY (id_caja)
+      REFERENCES caja (id_caja))

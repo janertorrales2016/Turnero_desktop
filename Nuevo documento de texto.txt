@@ -1,0 +1,30 @@
+select*from login
+select*from caja
+update login set contrasena='password' where id_login=3
+ update login set contrasena='Boca' where id_login=14
+ 
+
+
+select * from login
+where usuario='rosita'
+
+select recordarclave('janer','Janer',2)
+select*from turno
+
+
+select cedula, identificador, num_turn from turno 
+where fecha_h::timestamp::date='2010-01-01'
+
+insert into turno (id_caja) values (2)
+
+
+
+select caja.n_caja, concat(caja.nombre,' ', caja.apellido) as cajera , 
+		turno.fecha_h::timestamp::date as año,turno.fecha_h::timestamp::time as hora ,
+		turno.observacion,turno.cedula, concat(turno.identificador,turno.num_turn) as turn
+from turno inner join caja on turno.id_caja=caja.id_caja
+where  fecha_h::timestamp::date='2021-04-04'
+	and caja.id_caja=13
+ORDER BY
+	año ASC;
+
