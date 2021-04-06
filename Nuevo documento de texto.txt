@@ -28,3 +28,23 @@ where  fecha_h::timestamp::date='2021-04-04'
 ORDER BY
 	año ASC;
 
+
+
+
+
+select*from turno
+select*from login
+select*from caja
+
+
+insert into turno (fecha_h, cedula, identificador,num_turn, observacion) values
+		('2021-04-05 11:40:00','0000000000','B',(select 1+count(*) from turno where 
+												  fecha_h::timestamp::date='2021-04-10' and identificador='S'),'Especial')
+
+update turno set Observacion='Web' where identificador='B'												  
+												 											  
+select*from turno
+where fecha_h::timestamp::date='05/04/2021'
+	and identificador='B'
+	and id_caja is null
+order by fecha_h asc

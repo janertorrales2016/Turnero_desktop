@@ -601,6 +601,8 @@ public class Menu extends javax.swing.JFrame implements Runnable {
 
     private void rSButtonIconI1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonIconI1ActionPerformed
         
+        
+        JOptionPane.showMessageDialog(null, "contraseña actualizada correctamente");
 
     }//GEN-LAST:event_rSButtonIconI1ActionPerformed
 
