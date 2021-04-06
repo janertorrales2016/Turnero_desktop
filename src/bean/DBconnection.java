@@ -121,6 +121,21 @@ public class DBconnection {
         } catch (Exception e) {
             return map;
         }
+    }
+
+    public boolean turndiscapacidad(String fecha_h) {
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection(url, user, password);
+            Statement st = connection.createStatement();
+            id_caja cajita = new id_caja();
+            ResultSet resultSet= st.executeQuery("select inturnespe('" + fecha_h + "'," + cajita.getId_cajera() + ")");           
+            connection.close();
+            st.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
 
     }
 }

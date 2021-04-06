@@ -153,6 +153,11 @@ public class Menu extends javax.swing.JFrame implements Runnable {
         rSButtonIconI2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/discapacidad.png"))); // NOI18N
         rSButtonIconI2.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         rSButtonIconI2.setInheritsPopupMenu(true);
+        rSButtonIconI2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonIconI2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlTurnoLayout = new javax.swing.GroupLayout(pnlTurno);
         pnlTurno.setLayout(pnlTurnoLayout);
@@ -614,6 +619,20 @@ public class Menu extends javax.swing.JFrame implements Runnable {
             JOptionPane.showMessageDialog(null, "las contraseñas no coinciden");
         }
     }//GEN-LAST:event_btnupdateActionPerformed
+
+    private void rSButtonIconI2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonIconI2ActionPerformed
+        DBconnection conex = new DBconnection();
+        boolean valor;
+        try {
+            valor = conex.turndiscapacidad(lblfecha.getText() +" "+ lblhora.getText());           
+            if(valor==true)
+            {
+                txtnumeroturno.setText("T. S");
+                txtcedula.setText("Turno Especial");
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_rSButtonIconI2ActionPerformed
 
     /**
      * @param args the command line arguments

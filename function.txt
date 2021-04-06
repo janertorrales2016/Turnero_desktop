@@ -45,3 +45,19 @@ BEGIN
    RETURN contra;
 END;
 $contra$ LANGUAGE plpgsql;
+
+
+
+
+
+
+CREATE OR REPLACE FUNCTION  inturnespe(fecha timestamp, cajita integer)
+RETURNS void AS 
+$$
+
+insert into turno (fecha_h, cedula, identificador,num_turn, observacion,id_caja) values
+	(fecha,'0000000000','S',(select 1+count(*) from turno where 
+												fecha_h::timestamp::date= fecha::timestamp::date and identificador='S'),
+	 'Especial',cajita);												  			
+$$
+LANGUAGE sql;
